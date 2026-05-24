@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useMemo } from "react";
 import {
   Dumbbell, History as Hist, Plus, ArrowLeft, Check, X, Save, Play, Pause,
   Edit3, Trash2, TrendingUp, BookOpen, Clock, RotateCcw, ChevronDown,
-  ChevronUp, Flame, Search, Settings, Upload, Download as DL, AlertTriangle
+  ChevronUp, Flame
 } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 // ── Firebase SDK ──────────────────────────────────────────────────────────────
@@ -31,7 +31,6 @@ const C1  = "#242E1C";   // card principal
 const C2  = "#1E2718";   // card secundário
 const C3  = "#192015";   // card terciário
 const B1  = "#3A4D30";   // borda
-const B2  = "#4D6640";   // borda mais forte
 const T1  = "#EDE5C8";   // texto principal (creme)
 const T2  = "#9E9070";   // texto secundário
 const T3  = "#6A6048";   // texto muted
@@ -829,17 +828,6 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
     setWorkouts(ws => ws.map((wk, i) => i !== activeW ? wk : { ...wk, exercises: wk.exercises.filter(e => e.id !== exId) }));
   }
 
-  function moveEx(exId, dir) {
-    setWorkouts(ws => ws.map((wk, i) => {
-      if (i !== activeW) return wk;
-      const exs = [...wk.exercises];
-      const idx = exs.findIndex(e => e.id === exId);
-      const target = idx + dir;
-      if (target < 0 || target >= exs.length) return wk;
-      [exs[idx], exs[target]] = [exs[target], exs[idx]];
-      return { ...wk, exercises: exs };
-    }));
-  }
 
   // ── Drag-to-reorder ────────────────────────────────────────────────────────
   const dragIdRef = useRef(null);
@@ -1260,7 +1248,7 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
                         {expandMedia[e.id] && e.mediaUrl && (
                           <div style={{ marginTop:4, marginBottom:8, borderRadius:10, overflow:"hidden" }}>
                             {e.mediaUrl.includes("youtube")||e.mediaUrl.includes("youtu.be")
-                              ? <iframe src={e.mediaUrl.replace("watch?v=","embed/")} width="100%" height="180" frameBorder="0" allowFullScreen style={{borderRadius:10}} />
+                              ? <iframe title={`Demonstração: ${e.name}`} src={e.mediaUrl.replace("watch?v=","embed/")} width="100%" height="180" frameBorder="0" allowFullScreen style={{borderRadius:10}} />
                               : <img src={e.mediaUrl} alt={e.name} style={{width:"100%",borderRadius:10,maxHeight:180,objectFit:"cover"}} />}
                           </div>
                         )}
