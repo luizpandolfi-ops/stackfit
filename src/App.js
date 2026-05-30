@@ -41,11 +41,11 @@ if (typeof document !== "undefined") {
   const s = document.createElement("style");
   s.textContent = `
     body { background: #1A1F14 }
-    .wslider { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; background: transparent; cursor: pointer; outline: none; }
-    .wslider::-webkit-slider-runnable-track { height: 6px; background: #3A4D30; border-radius: 99px; }
-    .wslider::-webkit-slider-thumb { -webkit-appearance: none; width: 22px; height: 22px; background: #C9A84C; border-radius: 50%; margin-top: -8px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-    .wslider::-moz-range-track { height: 6px; background: #3A4D30; border-radius: 99px; }
-    .wslider::-moz-range-thumb { width: 22px; height: 22px; background: #C9A84C; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .wslider { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; background: transparent; cursor: pointer; outline: none; }
+    .wslider::-webkit-slider-runnable-track { height: 8px; background: #3A4D30; border-radius: 99px; }
+    .wslider::-webkit-slider-thumb { -webkit-appearance: none; width: 30px; height: 30px; background: #C9A84C; border-radius: 50%; margin-top: -11px; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+    .wslider::-moz-range-track { height: 8px; background: #3A4D30; border-radius: 99px; }
+    .wslider::-moz-range-thumb { width: 30px; height: 30px; background: #C9A84C; border-radius: 50%; border: none; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
   `;
   document.head.appendChild(s);
 }
@@ -57,13 +57,13 @@ function WeightSlider({ value = 0, onChange }) {
     <div style={{ width: "100%" }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 8 }}>
         <button onClick={() => onChange(snap(value - 0.5))}
-          style={{ width: 34, height: 34, borderRadius: 10, background: C3, border: `1.5px solid ${B1}`, fontSize: 20, fontWeight: 900, color: T2, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "inherit", lineHeight: 1 }}>−</button>
+          style={{ width: 46, height: 46, borderRadius: 12, background: C3, border: `1.5px solid ${B1}`, fontSize: 25, fontWeight: 900, color: T2, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "inherit", lineHeight: 1 }}>−</button>
         <div style={{ flex: 1, background: BLK, borderRadius: 10, padding: "7px 0", textAlign: "center", border: `1px solid ${B1}` }}>
-          <span style={{ fontSize: 22, fontWeight: 900, color: A, fontVariantNumeric: "tabular-nums" }}>{display}</span>
-          <span style={{ fontSize: 13, color: T3, fontWeight: 600 }}> kg</span>
+          <span style={{ fontSize: 25, fontWeight: 900, color: A, fontVariantNumeric: "tabular-nums" }}>{display}</span>
+          <span style={{ fontSize: 18, color: T3, fontWeight: 600 }}> kg</span>
         </div>
         <button onClick={() => onChange(snap(value + 0.5))}
-          style={{ width: 34, height: 34, borderRadius: 10, background: C3, border: `1.5px solid ${B1}`, fontSize: 20, fontWeight: 900, color: T2, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "inherit", lineHeight: 1 }}>+</button>
+          style={{ width: 46, height: 46, borderRadius: 12, background: C3, border: `1.5px solid ${B1}`, fontSize: 25, fontWeight: 900, color: T2, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontFamily: "inherit", lineHeight: 1 }}>+</button>
       </div>
       <input type="range" min="0" max="150" step="0.5" value={value}
         onChange={ev => onChange(parseFloat(ev.target.value))}
@@ -89,20 +89,20 @@ function RestTimer() {
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <div style={{ display: "flex", gap: 5 }}>
           {[30, 60, 90, 120].map(s => (
-            <button key={s} onClick={() => changeDur(s)} style={{ background: dur === s ? A : C2, border: `1px solid ${dur === s ? A : B1}`, borderRadius: 7, padding: "4px 8px", fontSize: 11, fontWeight: 700, color: dur === s ? BLK : T3, cursor: "pointer", fontFamily: "inherit" }}>
+            <button key={s} onClick={() => changeDur(s)} style={{ background: dur === s ? A : C2, border: `1px solid ${dur === s ? A : B1}`, borderRadius: 7, padding: "4px 8px", fontSize: 17, fontWeight: 700, color: dur === s ? BLK : T3, cursor: "pointer", fontFamily: "inherit" }}>
               {s >= 60 ? `${s / 60}min` : `${s}s`}
             </button>
           ))}
         </div>
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 6 }}>
-          <span style={{ fontSize: 20, fontWeight: 800, color: rem < 10 ? RED : A, fontVariantNumeric: "tabular-nums", minWidth: 44, textAlign: "right" }}>
+          <span style={{ fontSize: 25, fontWeight: 800, color: rem < 10 ? RED : A, fontVariantNumeric: "tabular-nums", minWidth: 44, textAlign: "right" }}>
             {Math.floor(rem / 60)}:{(rem % 60).toString().padStart(2, "0")}
           </span>
           <button onClick={() => { if (!on) setRem(dur); setOn(o => !o); }} style={{ background: on ? "rgba(224,48,48,0.2)" : "rgba(201,168,76,0.18)", border: "none", borderRadius: 8, padding: "7px", color: on ? RED : A, cursor: "pointer", display: "flex" }}>
-            {on ? <Pause size={14} /> : <Play size={14} />}
+            {on ? <Pause size={20} /> : <Play size={20} />}
           </button>
           <button onClick={() => { setOn(false); setRem(dur); }} style={{ background: C2, border: "none", borderRadius: 8, padding: "7px", color: T3, cursor: "pointer", display: "flex" }}>
-            <RotateCcw size={12} />
+            <RotateCcw size={17} />
           </button>
         </div>
       </div>
@@ -119,8 +119,8 @@ function Modal({ title, onClose, children }) {
     <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.5)", display: "flex", alignItems: "flex-end", justifyContent: "center", zIndex: 100, backdropFilter: "blur(3px)" }}>
       <div style={{ background: C1, borderRadius: "24px 24px 0 0", width: "100%", maxWidth: 480, padding: "24px 20px 40px", maxHeight: "92vh", overflowY: "auto", boxShadow: "0 -8px 40px rgba(0,0,0,0.15)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 20 }}>
-          <span style={{ fontSize: 17, fontWeight: 800, color: T1 }}>{title}</span>
-          <button onClick={onClose} style={{ background: C3, border: "none", borderRadius: 8, padding: "7px", color: T2, cursor: "pointer", display: "flex" }}><X size={16} /></button>
+          <span style={{ fontSize: 21, fontWeight: 800, color: T1 }}>{title}</span>
+          <button onClick={onClose} style={{ background: C3, border: "none", borderRadius: 8, padding: "7px", color: T2, cursor: "pointer", display: "flex" }}><X size={21} /></button>
         </div>
         {children}
       </div>
@@ -132,27 +132,27 @@ function Modal({ title, onClose, children }) {
 function Inp({ label, value, onChange, placeholder, type = "text" }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-      {label && <label style={{ fontSize: 11, color: T3, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 700 }}>{label}</label>}
+      {label && <label style={{ fontSize: 17, color: T3, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 700 }}>{label}</label>}
       <input type={type} value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder}
-        style={{ background: C2, border: `1.5px solid ${B1}`, borderRadius: 12, color: T1, padding: "13px 15px", fontSize: 16, outline: "none", fontFamily: "inherit", width: "100%", boxSizing: "border-box" }} />
+        style={{ background: C2, border: `1.5px solid ${B1}`, borderRadius: 12, color: T1, padding: "13px 15px", fontSize: 20, outline: "none", fontFamily: "inherit", width: "100%", boxSizing: "border-box" }} />
     </div>
   );
 }
 function Lbl({ children }) {
-  return <div style={{ fontSize: 11, color: T3, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>{children}</div>;
+  return <div style={{ fontSize: 17, color: T3, letterSpacing: 1.2, textTransform: "uppercase", fontWeight: 700, marginBottom: 8 }}>{children}</div>;
 }
 function PrimBtn({ onClick, children, disabled, danger }) {
   const bg = disabled ? C3 : danger ? RED : BLK;
   const col = disabled ? T3 : "#fff";
   return (
-    <button onClick={onClick} disabled={disabled} style={{ width: "100%", background: bg, color: col, border: "none", borderRadius: 16, padding: "17px", fontSize: 17, fontWeight: 800, cursor: disabled ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "inherit", letterSpacing: 0.3 }}>
+    <button onClick={onClick} disabled={disabled} style={{ width: "100%", background: bg, color: col, border: "none", borderRadius: 16, padding: "17px", fontSize: 21, fontWeight: 800, cursor: disabled ? "default" : "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 10, fontFamily: "inherit", letterSpacing: 0.3 }}>
       {children}
     </button>
   );
 }
 function GhostBtn({ onClick, children, accent }) {
   return (
-    <button onClick={onClick} style={{ width: "100%", background: accent ? `rgba(200,241,53,0.15)` : C2, color: accent ? "#8a6800" : T2, border: `1.5px solid ${accent ? "rgba(201,168,76,0.3)" : B1}`, borderRadius: 16, padding: "15px", fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: "inherit" }}>
+    <button onClick={onClick} style={{ width: "100%", background: accent ? `rgba(201,168,76,0.15)` : C2, color: accent ? A : T2, border: `1.5px solid ${accent ? "rgba(201,168,76,0.4)" : B1}`, borderRadius: 16, padding: "15px", fontSize: 20, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", gap: 8, fontFamily: "inherit" }}>
       {children}
     </button>
   );
@@ -160,7 +160,7 @@ function GhostBtn({ onClick, children, accent }) {
 function BackBtn({ onClick }) {
   return (
     <button onClick={onClick} style={{ background: C1, border: `1.5px solid ${B1}`, borderRadius: 12, color: T1, cursor: "pointer", padding: "9px 11px", display: "flex", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}>
-      <ArrowLeft size={18} />
+      <ArrowLeft size={23} />
     </button>
   );
 }
@@ -169,8 +169,8 @@ function PageHeader({ onBack, title, sub }) {
     <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
       <BackBtn onClick={onBack} />
       <div>
-        <div style={{ fontSize: 20, fontWeight: 900, color: T1, letterSpacing: -0.5 }}>{title}</div>
-        {sub && <div style={{ fontSize: 12, color: T3, marginTop: 1 }}>{sub}</div>}
+        <div style={{ fontSize: 25, fontWeight: 900, color: T1, letterSpacing: -0.5 }}>{title}</div>
+        {sub && <div style={{ fontSize: 16, color: T3, marginTop: 1 }}>{sub}</div>}
       </div>
     </div>
   );
@@ -886,9 +886,9 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
     <div>
       <PageHeader onBack={onBack} title={isEdit ? "Editar Treino" : "Criar Treino"} />
       <div style={{ textAlign: "center", padding: "60px 20px" }}>
-        <div style={{ fontSize: 56, marginBottom: 16 }}>{isEdit ? "✏️" : "✅"}</div>
-        <div style={{ fontSize: 22, fontWeight: 900, color: T1, marginBottom: 8 }}>{isEdit ? "Treino atualizado!" : "Programa criado!"}</div>
-        <div style={{ fontSize: 14, color: T3, marginBottom: 28 }}>Já ativo como seu treino atual.</div>
+        <div style={{ fontSize: 60, marginBottom: 16 }}>{isEdit ? "✏️" : "✅"}</div>
+        <div style={{ fontSize: 25, fontWeight: 900, color: T1, marginBottom: 8 }}>{isEdit ? "Treino atualizado!" : "Programa criado!"}</div>
+        <div style={{ fontSize: 19, color: T3, marginBottom: 28 }}>Já ativo como seu treino atual.</div>
         <PrimBtn onClick={onBack}>Voltar ao início</PrimBtn>
       </div>
     </div>
@@ -904,10 +904,10 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
           <Lbl>Divisão semanal</Lbl>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 10 }}>
             {[1,2,3,4].map(n => (
-              <button key={n} onClick={() => changeNumW(n)} style={{ background: numW===n ? BLK : C2, color: numW===n ? "#fff" : T2, border: `2px solid ${numW===n ? BLK : B1}`, borderRadius: 12, padding: "16px 0", fontSize: 22, fontWeight: 900, cursor: "pointer", fontFamily: "inherit" }}>{n}</button>
+              <button key={n} onClick={() => changeNumW(n)} style={{ background: numW===n ? BLK : C2, color: numW===n ? "#fff" : T2, border: `2px solid ${numW===n ? BLK : B1}`, borderRadius: 12, padding: "16px 0", fontSize: 25, fontWeight: 900, cursor: "pointer", fontFamily: "inherit" }}>{n}</button>
             ))}
           </div>
-          <div style={{ fontSize: 12, color: T3, marginTop: 8, textAlign: "center" }}>
+          <div style={{ fontSize: 16, color: T3, marginTop: 8, textAlign: "center" }}>
             {["Um treino (A)","Treinos A + B","Treinos A + B + C","Treinos A + B + C + D"][numW-1]}
           </div>
         </div>
@@ -924,10 +924,10 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
       {/* Tabs */}
       <div style={{ display: "flex", gap: 8, marginBottom: 16 }}>
         {workouts.map((wk, i) => (
-          <button key={wk.id} onClick={() => setActiveW(i)} style={{ flex: 1, background: activeW===i ? BLK : C2, color: activeW===i ? "#fff" : T2, border: `2px solid ${activeW===i ? BLK : B1}`, borderRadius: 12, padding: "10px 0", fontWeight: 800, fontSize: 15, cursor: "pointer", fontFamily: "inherit", position: "relative" }}>
+          <button key={wk.id} onClick={() => setActiveW(i)} style={{ flex: 1, background: activeW===i ? BLK : C2, color: activeW===i ? "#fff" : T2, border: `2px solid ${activeW===i ? BLK : B1}`, borderRadius: 12, padding: "10px 0", fontWeight: 800, fontSize: 20, cursor: "pointer", fontFamily: "inherit", position: "relative" }}>
             {wk.label}
             {wk.exercises.length > 0 && (
-              <span style={{ position: "absolute", top: 4, right: 7, fontSize: 9, fontWeight: 800, color: activeW===i ? A : T3 }}>{wk.exercises.length}</span>
+              <span style={{ position: "absolute", top: 4, right: 7, fontSize: 14, fontWeight: 800, color: activeW===i ? A : T3 }}>{wk.exercises.length}</span>
             )}
           </button>
         ))}
@@ -944,7 +944,7 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
         <Lbl>Escolher por grupo muscular</Lbl>
         <div style={{ display: "flex", gap: 6, overflowX: "auto", paddingBottom: 6 }}>
           {Object.keys(EX_CATS).map(cat => (
-            <button key={cat} onClick={() => setActiveCat(cat)} style={{ flexShrink: 0, background: activeCat===cat ? BLK : C2, color: activeCat===cat ? "#fff" : T2, border: `1.5px solid ${activeCat===cat ? BLK : B1}`, borderRadius: 20, padding: "7px 13px", fontSize: 12, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
+            <button key={cat} onClick={() => setActiveCat(cat)} style={{ flexShrink: 0, background: activeCat===cat ? BLK : C2, color: activeCat===cat ? "#fff" : T2, border: `1.5px solid ${activeCat===cat ? BLK : B1}`, borderRadius: 20, padding: "7px 13px", fontSize: 16, fontWeight: 700, cursor: "pointer", fontFamily: "inherit", whiteSpace: "nowrap" }}>
               {cat}
             </button>
           ))}
@@ -958,8 +958,8 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
           const isFull = w.exercises.length >= 20;
           return (
             <button key={name} onClick={() => !isAdded && !isFull && addEx(name)}
-              style={{ background: isAdded ? BLK : C3, color: isAdded ? A : T1, border: `1.5px solid ${isAdded ? BLK : B1}`, borderRadius: 20, padding: "7px 13px", fontSize: 13, fontWeight: 600, cursor: isAdded||isFull ? "default" : "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 5, opacity: isFull&&!isAdded ? 0.35 : 1, transition: "all 0.15s" }}>
-              {isAdded && <Check size={11} strokeWidth={3} />}{name}
+              style={{ background: isAdded ? BLK : C3, color: isAdded ? A : T1, border: `1.5px solid ${isAdded ? BLK : B1}`, borderRadius: 20, padding: "7px 13px", fontSize: 18, fontWeight: 600, cursor: isAdded||isFull ? "default" : "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", gap: 5, opacity: isFull&&!isAdded ? 0.35 : 1, transition: "all 0.15s" }}>
+              {isAdded && <Check size={15} strokeWidth={3} />}{name}
             </button>
           );
         })}
@@ -971,16 +971,16 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
         <div style={{ display: "flex", gap: 8 }}>
           <input value={customEx} onChange={e => setCustomEx(e.target.value)} onKeyDown={e => e.key==="Enter"&&addCustom()}
             placeholder="Digite o nome do exercício..."
-            style={{ flex: 1, background: C2, border: `1.5px solid ${B1}`, borderRadius: 10, color: T1, padding: "11px 13px", fontSize: 14, outline: "none", fontFamily: "inherit" }} />
+            style={{ flex: 1, background: C2, border: `1.5px solid ${B1}`, borderRadius: 10, color: T1, padding: "11px 13px", fontSize: 19, outline: "none", fontFamily: "inherit" }} />
           <button onClick={addCustom} style={{ background: BLK, border: "none", borderRadius: 10, padding: "0 16px", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center" }}>
-            <Plus size={18} />
+            <Plus size={23} />
           </button>
         </div>
       </div>
 
       {/* Exercise list — draggable */}
       {w.exercises.length === 0 ? (
-        <div style={{ textAlign: "center", padding: "32px 0", color: T3, fontSize: 15, border: `1.5px dashed ${B1}`, borderRadius: 14, marginBottom: 14, background: C2 }}>
+        <div style={{ textAlign: "center", padding: "32px 0", color: T3, fontSize: 20, border: `1.5px dashed ${B1}`, borderRadius: 14, marginBottom: 14, background: C2 }}>
           Toque nos chips acima para adicionar ao Treino {w.label}
         </div>
       ) : (
@@ -1003,43 +1003,43 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
                   onTouchStart={ev => onDragHandleTouch(ev, e.id)}
                   onMouseDown={ev => onDragHandleMouse(ev, e.id)}
                   style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2, cursor: "grab", padding: "4px 2px", touchAction: "none", flexShrink: 0, marginTop: 2 }}>
-                  <span style={{ fontSize: 22, color: isBeingDragged ? A : T3, lineHeight: 1, userSelect: "none" }}>⠿</span>
-                  <div style={{ width: 22, height: 22, borderRadius: 6, background: isBeingDragged ? A : BLK, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: isBeingDragged ? BLK : A }}>{idx + 1}</div>
+                  <span style={{ fontSize: 25, color: isBeingDragged ? A : T3, lineHeight: 1, userSelect: "none" }}>⠿</span>
+                  <div style={{ width: 30, height: 30, borderRadius: 8, background: isBeingDragged ? A : BLK, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, fontWeight: 800, color: isBeingDragged ? BLK : A }}>{idx + 1}</div>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   {/* Name + delete row */}
                   <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 12 }}>
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ fontSize: 10, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>EXERCÍCIO</div>
+                      <div style={{ fontSize: 15, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>EXERCÍCIO</div>
                       <input
                         value={e.name}
                         onChange={ev => updEx(e.id, "name", ev.target.value)}
-                        style={{ width: "100%", background: "transparent", border: "none", borderBottom: `2px solid ${B1}`, color: T1, padding: "3px 0 6px", fontSize: 15, fontWeight: 800, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
+                        style={{ width: "100%", background: "transparent", border: "none", borderBottom: `2px solid ${B1}`, color: T1, padding: "3px 0 6px", fontSize: 20, fontWeight: 800, outline: "none", fontFamily: "inherit", boxSizing: "border-box" }}
                         onFocus={ev => ev.target.style.borderBottomColor = BLK}
                         onBlur={ev => ev.target.style.borderBottomColor = B1}
                       />
                     </div>
                     <button onClick={() => removeEx(e.id)} style={{ background: "rgba(224,48,48,0.08)", border: "none", borderRadius: 10, padding: "9px", color: RED, cursor: "pointer", display: "flex", flexShrink: 0, marginTop: 16 }}>
-                      <Trash2 size={18} />
+                      <Trash2 size={23} />
                     </button>
                   </div>
                   {/* Séries + Reps */}
                   <div style={{ display: "flex", gap: 10, marginBottom: 12 }}>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 10, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>SÉRIES</div>
+                      <div style={{ fontSize: 15, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>SÉRIES</div>
                       <input type="number" value={String(e.sets)} min="0" max="10"
                         onChange={ev => updEx(e.id,"sets",Math.max(0,Math.min(10,parseInt(ev.target.value)||0)))}
-                        style={{ width:"100%", background:C3, border:`1.5px solid ${B1}`, borderRadius:10, color:T1, padding:"10px 8px", fontSize:18, fontWeight:900, outline:"none", fontFamily:"inherit", textAlign:"center", boxSizing:"border-box" }} />
+                        style={{ width:"100%", background:C3, border:`1.5px solid ${B1}`, borderRadius:10, color:T1, padding:"10px 8px", fontSize: 23, fontWeight:900, outline:"none", fontFamily:"inherit", textAlign:"center", boxSizing:"border-box" }} />
                     </div>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 10, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>REPS</div>
+                      <div style={{ fontSize: 15, color: T3, marginBottom: 4, letterSpacing: 1.2, fontWeight: 700 }}>REPS</div>
                       <input value={e.reps} onChange={ev => updEx(e.id,"reps",ev.target.value)} placeholder="12"
-                        style={{ width:"100%", background:C3, border:`1.5px solid ${B1}`, borderRadius:10, color:T1, padding:"10px 8px", fontSize:18, fontWeight:900, outline:"none", fontFamily:"inherit", textAlign:"center", boxSizing:"border-box" }} />
+                        style={{ width:"100%", background:C3, border:`1.5px solid ${B1}`, borderRadius:10, color:T1, padding:"10px 8px", fontSize: 23, fontWeight:900, outline:"none", fontFamily:"inherit", textAlign:"center", boxSizing:"border-box" }} />
                     </div>
                   </div>
                   {/* Weight */}
                   <div>
-                    <div style={{ fontSize: 10, color: T3, marginBottom: 6, letterSpacing: 1.2, fontWeight: 700 }}>PESO</div>
+                    <div style={{ fontSize: 15, color: T3, marginBottom: 6, letterSpacing: 1.2, fontWeight: 700 }}>PESO</div>
                     <WeightSlider value={e.weight} onChange={v => updEx(e.id, "weight", v)} />
                   </div>
                 </div>
@@ -1049,7 +1049,7 @@ function WorkoutBuilder({ initialProgram, onSave, onBack }) {
           })}
         </div>
       )}
-      <PrimBtn onClick={save} disabled={!hasAny}><Save size={16}/> {isEdit ? "Salvar alterações" : "Salvar Programa"}</PrimBtn>
+      <PrimBtn onClick={save} disabled={!hasAny}><Save size={21}/> {isEdit ? "Salvar alterações" : "Salvar Programa"}</PrimBtn>
     </div>
   );
 }
@@ -1072,19 +1072,19 @@ function HomeScreen({ appState, navigate }) {
     <div>
       {/* Hero strip */}
       <div style={{ background: BLK, margin: "0 -20px", padding: "28px 20px 24px", marginTop: -24, marginBottom: 20, borderBottom: `1px solid ${B1}` }}>
-        <div style={{ fontSize: 11, color: T3, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>
+        <div style={{ fontSize: 17, color: T3, letterSpacing: 2, textTransform: "uppercase", marginBottom: 8 }}>
           {today} · {new Date().toLocaleDateString("pt-BR",{day:"numeric",month:"long",year:"numeric"})}
         </div>
-        <div style={{ fontSize: 28, fontWeight: 900, color: T1, letterSpacing: -0.5, lineHeight: 1.15 }}>
+        <div style={{ fontSize: 32, fontWeight: 900, color: T1, letterSpacing: -0.5, lineHeight: 1.15 }}>
           Bom treino,<br/><span style={{ color: A }}>Luiz! 💪</span>
         </div>
-        <div style={{ marginTop: 6, fontSize: 12, color: T3, letterSpacing: 1, textTransform: "uppercase" }}>
+        <div style={{ marginTop: 6, fontSize: 16, color: T3, letterSpacing: 1, textTransform: "uppercase" }}>
           Stack your reps. Build your legacy.
         </div>
         {cp && (
           <div style={{ marginTop: 14, background: "rgba(201,168,76,0.1)", borderRadius: 10, padding: "9px 14px", display: "inline-flex", alignItems: "center", gap: 8, border: `1px solid rgba(201,168,76,0.2)` }}>
-            <Flame size={13} color={A} />
-            <span style={{ fontSize: 12, color: T2, fontWeight: 600 }}>{cp.name}</span>
+            <Flame size={18} color={A} />
+            <span style={{ fontSize: 16, color: T2, fontWeight: 600 }}>{cp.name}</span>
           </div>
         )}
       </div>
@@ -1096,17 +1096,17 @@ function HomeScreen({ appState, navigate }) {
             background: active ? BLK : C1,
             border: `2px solid ${active ? BLK : B1}`,
             borderRadius: 22, padding: "24px 18px", cursor: "pointer", textAlign: "left",
-            display: "flex", flexDirection: "column", gap: 14, minHeight: 168,
+            display: "flex", flexDirection: "column", gap: 14, minHeight: 190,
             fontFamily: "inherit", boxShadow: active ? "0 4px 20px rgba(0,0,0,0.15)" : "0 2px 8px rgba(0,0,0,0.05)",
             transition: "all 0.15s"
           }}>
             <div style={{ display: "flex", flexDirection: "column", gap: 5 }}>
-              <span style={{ fontSize: 11, fontWeight: 800, letterSpacing: 1.5, color: active ? A : T3 }}>{label}</span>
-              <div style={{ color: active ? A : BLK, display: "flex" }}><Icon size={38} strokeWidth={2} /></div>
+              <span style={{ fontSize: 17, fontWeight: 800, letterSpacing: 1.5, color: active ? A : T3 }}>{label}</span>
+              <div style={{ color: active ? A : BLK, display: "flex" }}><Icon size={44} strokeWidth={2} /></div>
             </div>
             <div>
-              <div style={{ fontSize: 18, fontWeight: 900, color: active ? "#fff" : T1, marginBottom: 4 }}>{title}</div>
-              <div style={{ fontSize: 12, color: active ? "#888" : T3, lineHeight: 1.4, fontWeight: 500 }}>{sub}</div>
+              <div style={{ fontSize: 23, fontWeight: 900, color: active ? "#fff" : T1, marginBottom: 4 }}>{title}</div>
+              <div style={{ fontSize: 16, color: active ? "#888" : T3, lineHeight: 1.4, fontWeight: 500 }}>{sub}</div>
             </div>
           </button>
         ))}
@@ -1131,9 +1131,9 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
     <div>
       <PageHeader onBack={onBack} title="Treino Atual" />
       <Card style={{ textAlign: "center", padding: "48px 20px" }}>
-        <Dumbbell size={40} color={T3} style={{ marginBottom: 12 }} />
-        <div style={{ fontSize: 16, fontWeight: 800, color: T1, marginBottom: 6 }}>Nenhum programa ativo</div>
-        <div style={{ fontSize: 13, color: T3 }}>Vá em Treinos Salvos e ative um programa</div>
+        <Dumbbell size={46} color={T3} style={{ marginBottom: 12 }} />
+        <div style={{ fontSize: 20, fontWeight: 800, color: T1, marginBottom: 6 }}>Nenhum programa ativo</div>
+        <div style={{ fontSize: 18, color: T3 }}>Vá em Treinos Salvos e ative um programa</div>
       </Card>
     </div>
   );
@@ -1183,9 +1183,9 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
     <div>
       <PageHeader onBack={onBack} title="Treino Atual" />
       <Card style={{ textAlign: "center", padding: "60px 20px" }}>
-        <div style={{ fontSize: 56, marginBottom: 16 }}>🏆</div>
-        <div style={{ fontSize: 24, fontWeight: 900, color: T1, marginBottom: 8 }}>Treino concluído!</div>
-        <div style={{ fontSize: 14, color: T3, marginBottom: 28 }}>Sessão registrada no histórico.</div>
+        <div style={{ fontSize: 60, marginBottom: 16 }}>🏆</div>
+        <div style={{ fontSize: 28, fontWeight: 900, color: T1, marginBottom: 8 }}>Treino concluído!</div>
+        <div style={{ fontSize: 19, color: T3, marginBottom: 28 }}>Sessão registrada no histórico.</div>
         <PrimBtn onClick={() => setFinished(false)}>Voltar aos treinos</PrimBtn>
       </Card>
     </div>
@@ -1203,14 +1203,14 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
             <div key={wk.id} style={{ background: isOpen ? BLK : C1, borderRadius: 20, overflow: "hidden", boxShadow: isOpen ? "0 8px 30px rgba(0,0,0,0.4)" : "0 2px 8px rgba(0,0,0,0.15)", border: `2px solid ${isOpen ? A : B1}`, transition: "all 0.2s" }}>
               <button onClick={() => toggleExpand(wk.id)} style={{ width:"100%", background:"transparent", border:"none", padding:"18px 20px", cursor:"pointer", textAlign:"left", display:"flex", alignItems:"center", gap:14, fontFamily:"inherit" }}>
                 <div style={{ width:46, height:46, borderRadius:14, background: isOpen ? A : BLK, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
-                  <span style={{ fontSize:20, fontWeight:900, color: isOpen ? BLK : "#fff" }}>{wk.label}</span>
+                  <span style={{ fontSize: 25, fontWeight:900, color: isOpen ? BLK : "#fff" }}>{wk.label}</span>
                 </div>
                 <div style={{ flex:1 }}>
-                  <div style={{ fontSize:15, fontWeight:800, color: isOpen ? "#fff" : T1 }}>{wk.name}</div>
-                  <div style={{ fontSize:11, color: isOpen ? "#888" : T3, marginTop:2 }}>{wk.note} · {wk.exercises.length} ex.</div>
+                  <div style={{ fontSize: 20, fontWeight:800, color: isOpen ? "#fff" : T1 }}>{wk.name}</div>
+                  <div style={{ fontSize: 17, color: isOpen ? "#888" : T3, marginTop:2 }}>{wk.note} · {wk.exercises.length} ex.</div>
                 </div>
-                {isOpen && totalSets > 0 && <span style={{ fontSize:13, fontWeight:800, color:A }}>{doneSets}/{totalSets}</span>}
-                <div style={{ color: isOpen ? "#888" : T3 }}>{isOpen ? <ChevronUp size={18}/> : <ChevronDown size={18}/>}</div>
+                {isOpen && totalSets > 0 && <span style={{ fontSize: 18, fontWeight:800, color:A }}>{doneSets}/{totalSets}</span>}
+                <div style={{ color: isOpen ? "#888" : T3 }}>{isOpen ? <ChevronUp size={23}/> : <ChevronDown size={23}/>}</div>
               </button>
 
               {isOpen && totalSets > 0 && (
@@ -1229,19 +1229,19 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
                     return (
                       <div key={e.id} style={{ background: allDone ? `rgba(201,168,76,0.08)` : C2, border:`1px solid ${allDone ? "rgba(201,168,76,0.3)" : B1}`, borderRadius:14, padding:"13px 14px", transition:"all 0.2s" }}>
                         {/* Name + tags */}
-                        <div style={{ fontSize:14, fontWeight:800, color: allDone ? T3 : T1, textDecoration: allDone ? "line-through" : "none", marginBottom:6 }}>{e.name}</div>
+                        <div style={{ fontSize: 19, fontWeight:800, color: allDone ? T3 : T1, textDecoration: allDone ? "line-through" : "none", marginBottom:6 }}>{e.name}</div>
                         <div style={{ display:"flex", gap:6, flexWrap:"wrap", marginBottom: 8 }}>
-                          {e.sets>0 && <span style={{ background:`rgba(201,168,76,0.15)`, color:A, fontSize:11, fontWeight:700, padding:"2px 8px", borderRadius:6 }}>{e.sets}×</span>}
-                          {e.reps && <span style={{ background:`rgba(201,168,76,0.15)`, color:A, fontSize:11, fontWeight:700, padding:"2px 8px", borderRadius:6 }}>{e.reps} reps</span>}
+                          {e.sets>0 && <span style={{ background:`rgba(201,168,76,0.15)`, color:A, fontSize: 17, fontWeight:700, padding:"2px 8px", borderRadius:6 }}>{e.sets}×</span>}
+                          {e.reps && <span style={{ background:`rgba(201,168,76,0.15)`, color:A, fontSize: 17, fontWeight:700, padding:"2px 8px", borderRadius:6 }}>{e.reps} reps</span>}
                         </div>
                         {e.description && (
-                          <button onClick={() => setExpandDesc(d=>({...d,[e.id]:!d[e.id]}))} style={{ background:"none", border:"none", color:T3, fontSize:11, cursor:"pointer", padding:"0 0 6px", fontFamily:"inherit" }}>
+                          <button onClick={() => setExpandDesc(d=>({...d,[e.id]:!d[e.id]}))} style={{ background:"none", border:"none", color:T3, fontSize: 17, cursor:"pointer", padding:"0 0 6px", fontFamily:"inherit" }}>
                             {expandDesc[e.id] ? "▲ Ocultar dica" : "▼ Ver dica"}
                           </button>
                         )}
-                        {expandDesc[e.id] && e.description && <div style={{ fontSize:12, color:T3, marginBottom:8, fontStyle:"italic" }}>{e.description}</div>}
+                        {expandDesc[e.id] && e.description && <div style={{ fontSize: 16, color:T3, marginBottom:8, fontStyle:"italic" }}>{e.description}</div>}
                         {e.mediaUrl && (
-                          <button onClick={() => setExpandMedia(d=>({...d,[e.id]:!d[e.id]}))} style={{ background:"none", border:"none", color:A, fontSize:11, cursor:"pointer", padding:"0 0 6px", fontFamily:"inherit" }}>
+                          <button onClick={() => setExpandMedia(d=>({...d,[e.id]:!d[e.id]}))} style={{ background:"none", border:"none", color:A, fontSize: 17, cursor:"pointer", padding:"0 0 6px", fontFamily:"inherit" }}>
                             {expandMedia[e.id] ? "▲ Fechar" : "▶ Demonstração"}
                           </button>
                         )}
@@ -1257,23 +1257,23 @@ function CurrentWorkoutScreen({ appState, onBack, onSaveState }) {
                         {sets>0 && (
                           <div style={{ marginTop:10, display:"flex", gap:7, flexWrap:"wrap" }}>
                             {doneArr.map((d,i) => (
-                              <button key={i} onClick={() => toggleSet(e.id,i,sets)} style={{ width:36, height:36, borderRadius:10, background: d ? A : C3, border:`1.5px solid ${d ? A : B1}`, display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", fontSize:13, fontWeight:800, color: d ? BLK : T3 }}>
-                                {d ? <Check size={15} strokeWidth={3}/> : i+1}
+                              <button key={i} onClick={() => toggleSet(e.id,i,sets)} style={{ width:48, height:48, borderRadius:12, background: d ? A : C3, border:`1.5px solid ${d ? A : B1}`, display:"flex", alignItems:"center", justifyContent:"center", cursor:"pointer", fontSize: 18, fontWeight:800, color: d ? BLK : T3 }}>
+                                {d ? <Check size={21} strokeWidth={3}/> : i+1}
                               </button>
                             ))}
                           </div>
                         )}
                         {showRest===e.id && <RestTimer />}
                         {showRest!==e.id && sets>0 && doneArr.some(Boolean) && (
-                          <button onClick={() => setShowRest(e.id)} style={{ marginTop:8, background:"none", border:"none", color:T3, fontSize:11, cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:4 }}>
-                            <Clock size={11}/> Timer de descanso
+                          <button onClick={() => setShowRest(e.id)} style={{ marginTop:8, background:"none", border:"none", color:T3, fontSize: 17, cursor:"pointer", fontFamily:"inherit", display:"flex", alignItems:"center", gap:4 }}>
+                            <Clock size={15}/> Timer de descanso
                           </button>
                         )}
                       </div>
                     );
                   })}
                   <div style={{ marginTop:6 }}>
-                    <PrimBtn onClick={() => finishWorkout(wk)}><Check size={18} strokeWidth={3}/> Concluir Treino {wk.label}</PrimBtn>
+                    <PrimBtn onClick={() => finishWorkout(wk)}><Check size={23} strokeWidth={3}/> Concluir Treino {wk.label}</PrimBtn>
                   </div>
                 </div>
               )}
@@ -1321,19 +1321,19 @@ function SavedWorkoutsScreen({ appState, onBack, onSaveState, onEdit }) {
             <Card key={p.id} style={{ border: `2px solid ${isActive ? BLK : B1}`, padding: "16px 18px" }}>
               {/* Name row */}
               <div style={{ marginBottom: 12 }}>
-                {isActive && <span style={{ display: "inline-block", background: BLK, color: A, fontSize: 9, fontWeight: 800, padding: "3px 8px", borderRadius: 6, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 6 }}>ATIVO</span>}
+                {isActive && <span style={{ display: "inline-block", background: BLK, color: A, fontSize: 14, fontWeight: 800, padding: "3px 8px", borderRadius: 6, letterSpacing: 1.2, textTransform: "uppercase", marginBottom: 6 }}>ATIVO</span>}
                 {isEditingThis ? (
                   <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
                     <input autoFocus value={editingName} onChange={e => setEditingName(e.target.value)}
                       onKeyDown={e => { if (e.key === "Enter") confirmEditName(p.id); if (e.key === "Escape") setEditingId(null); }}
-                      style={{ flex: 1, background: C2, border: `2px solid ${BLK}`, borderRadius: 10, color: T1, padding: "10px 12px", fontSize: 16, fontWeight: 800, outline: "none", fontFamily: "inherit" }} />
-                    <button onClick={() => confirmEditName(p.id)} style={{ background: BLK, border: "none", borderRadius: 10, padding: "10px 14px", color: A, cursor: "pointer", fontWeight: 800, fontSize: 15, fontFamily: "inherit" }}>✓</button>
-                    <button onClick={() => setEditingId(null)} style={{ background: C3, border: "none", borderRadius: 10, padding: "10px 12px", color: T2, cursor: "pointer", display: "flex" }}><X size={16} /></button>
+                      style={{ flex: 1, background: C2, border: `2px solid ${BLK}`, borderRadius: 10, color: T1, padding: "10px 12px", fontSize: 20, fontWeight: 800, outline: "none", fontFamily: "inherit" }} />
+                    <button onClick={() => confirmEditName(p.id)} style={{ background: BLK, border: "none", borderRadius: 10, padding: "10px 14px", color: A, cursor: "pointer", fontWeight: 800, fontSize: 20, fontFamily: "inherit" }}>✓</button>
+                    <button onClick={() => setEditingId(null)} style={{ background: C3, border: "none", borderRadius: 10, padding: "10px 12px", color: T2, cursor: "pointer", display: "flex" }}><X size={21} /></button>
                   </div>
                 ) : (
                   <button onClick={() => startEditName(p)} style={{ background: "none", border: "none", padding: 0, cursor: "pointer", textAlign: "left", display: "flex", alignItems: "center", gap: 8, width: "100%" }}>
-                    <span style={{ fontSize: 16, fontWeight: 900, color: T1 }}>{p.name}</span>
-                    <Edit3 size={14} color={T3} style={{ flexShrink: 0 }} />
+                    <span style={{ fontSize: 20, fontWeight: 900, color: T1 }}>{p.name}</span>
+                    <Edit3 size={20} color={T3} style={{ flexShrink: 0 }} />
                   </button>
                 )}
               </div>
@@ -1341,7 +1341,7 @@ function SavedWorkoutsScreen({ appState, onBack, onSaveState, onEdit }) {
               {/* Workout badges */}
               <div style={{ display: "flex", gap: 6, flexWrap: "wrap", marginBottom: 14 }}>
                 {p.workouts.map(w => (
-                  <span key={w.id} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 8, fontSize: 12, fontWeight: 700, color: T2, padding: "5px 11px" }}>
+                  <span key={w.id} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 8, fontSize: 16, fontWeight: 700, color: T2, padding: "5px 11px" }}>
                     {w.label}: {w.exercises.length} ex.
                   </span>
                 ))}
@@ -1350,10 +1350,10 @@ function SavedWorkoutsScreen({ appState, onBack, onSaveState, onEdit }) {
               {/* Inline delete confirmation */}
               {isConfirmingDelete && (
                 <div style={{ background: "rgba(224,48,48,0.06)", border: `1.5px solid rgba(224,48,48,0.25)`, borderRadius: 12, padding: "12px 14px", marginBottom: 10, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: RED }}>Excluir este programa?</span>
+                  <span style={{ fontSize: 19, fontWeight: 700, color: RED }}>Excluir este programa?</span>
                   <div style={{ display: "flex", gap: 8 }}>
-                    <button onClick={() => del(p.id)} style={{ background: RED, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 14, fontWeight: 800, cursor: "pointer", fontFamily: "inherit" }}>Excluir</button>
-                    <button onClick={() => setConfirmDeleteId(null)} style={{ background: C3, color: T2, border: "none", borderRadius: 10, padding: "9px 14px", fontSize: 14, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Cancelar</button>
+                    <button onClick={() => del(p.id)} style={{ background: RED, color: "#fff", border: "none", borderRadius: 10, padding: "9px 16px", fontSize: 19, fontWeight: 800, cursor: "pointer", fontFamily: "inherit" }}>Excluir</button>
+                    <button onClick={() => setConfirmDeleteId(null)} style={{ background: C3, color: T2, border: "none", borderRadius: 10, padding: "9px 14px", fontSize: 19, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Cancelar</button>
                   </div>
                 </div>
               )}
@@ -1361,20 +1361,20 @@ function SavedWorkoutsScreen({ appState, onBack, onSaveState, onEdit }) {
               {/* Actions */}
               <div style={{ display: "flex", gap: 8 }}>
                 {!isActive && (
-                  <button onClick={() => activate(p.id)} style={{ flex: 1, background: BLK, color: "#fff", border: "none", borderRadius: 12, padding: "13px", fontSize: 15, fontWeight: 800, cursor: "pointer", fontFamily: "inherit" }}>
+                  <button onClick={() => activate(p.id)} style={{ flex: 1, background: BLK, color: "#fff", border: "none", borderRadius: 12, padding: "13px", fontSize: 20, fontWeight: 800, cursor: "pointer", fontFamily: "inherit" }}>
                     Ativar
                   </button>
                 )}
-                <button onClick={() => onEdit(p)} style={{ flex: 1, background: C2, color: T1, border: `1.5px solid ${B1}`, borderRadius: 12, padding: "13px", fontSize: 15, fontWeight: 800, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
-                  <Edit3 size={16} /> Editar
+                <button onClick={() => onEdit(p)} style={{ flex: 1, background: C2, color: T1, border: `1.5px solid ${B1}`, borderRadius: 12, padding: "13px", fontSize: 20, fontWeight: 800, cursor: "pointer", fontFamily: "inherit", display: "flex", alignItems: "center", justifyContent: "center", gap: 6 }}>
+                  <Edit3 size={21} /> Editar
                 </button>
                 <button onClick={() => duplicate(p)} style={{ background: C2, color: T2, border: `1.5px solid ${B1}`, borderRadius: 12, padding: "13px 14px", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }} title="Duplicar">
-                  <span style={{ fontSize: 18 }}>⧉</span>
+                  <span style={{ fontSize: 23 }}>⧉</span>
                 </button>
                 {!isActive && (
                   <button onClick={() => setConfirmDeleteId(isConfirmingDelete ? null : p.id)}
                     style={{ background: isConfirmingDelete ? RED : "rgba(224,48,48,0.08)", border: "none", borderRadius: 12, padding: "13px 14px", color: isConfirmingDelete ? "#fff" : RED, cursor: "pointer", display: "flex", alignItems: "center" }}>
-                    <Trash2 size={18} />
+                    <Trash2 size={23} />
                   </button>
                 )}
               </div>
@@ -1417,8 +1417,8 @@ function HistoryScreen({ appState, onBack }) {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 20 }}>
         {[["Semana", weekN], ["Mês", monthN], ["Total", sessions.length]].map(([l, v]) => (
           <Card key={l} style={{ textAlign: "center", padding: "14px 10px" }}>
-            <div style={{ fontSize: 28, fontWeight: 900, color: T1 }}>{v}</div>
-            <div style={{ fontSize: 10, color: T3, marginTop: 2, fontWeight: 700, letterSpacing: 1 }}>{l.toUpperCase()}</div>
+            <div style={{ fontSize: 32, fontWeight: 900, color: T1 }}>{v}</div>
+            <div style={{ fontSize: 15, color: T3, marginTop: 2, fontWeight: 700, letterSpacing: 1 }}>{l.toUpperCase()}</div>
           </Card>
         ))}
       </div>
@@ -1426,16 +1426,16 @@ function HistoryScreen({ appState, onBack }) {
       {allExNames.length > 0 && (
         <div style={{ marginBottom: 16 }}>
           <GhostBtn onClick={() => setShowChart(true)} accent>
-            <TrendingUp size={16} /> Ver evolução de carga
+            <TrendingUp size={21} /> Ver evolução de carga
           </GhostBtn>
         </div>
       )}
 
       {sessions.length === 0 ? (
         <Card style={{ textAlign: "center", padding: "50px 20px" }}>
-          <Hist size={36} color={T3} style={{ marginBottom: 12 }} />
-          <div style={{ fontSize: 15, fontWeight: 800, color: T1, marginBottom: 6 }}>Nenhum treino ainda</div>
-          <div style={{ fontSize: 12, color: T3 }}>Conclua um treino para ver aqui</div>
+          <Hist size={41} color={T3} style={{ marginBottom: 12 }} />
+          <div style={{ fontSize: 20, fontWeight: 800, color: T1, marginBottom: 6 }}>Nenhum treino ainda</div>
+          <div style={{ fontSize: 16, color: T3 }}>Conclua um treino para ver aqui</div>
         </Card>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
@@ -1444,21 +1444,21 @@ function HistoryScreen({ appState, onBack }) {
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 10 }}>
                 <div>
                   <div style={{ display: "flex", alignItems: "center", gap: 6, marginBottom: 2 }}>
-                    <span style={{ background: BLK, color: A, fontSize: 12, fontWeight: 800, padding: "2px 8px", borderRadius: 6 }}>
+                    <span style={{ background: BLK, color: A, fontSize: 16, fontWeight: 800, padding: "2px 8px", borderRadius: 6 }}>
                       Treino {s.workoutLabel}
                     </span>
                   </div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: T1 }}>{s.workoutName}</div>
-                  <div style={{ fontSize: 11, color: T3 }}>{s.programName}</div>
+                  <div style={{ fontSize: 19, fontWeight: 800, color: T1 }}>{s.workoutName}</div>
+                  <div style={{ fontSize: 17, color: T3 }}>{s.programName}</div>
                 </div>
                 <div style={{ textAlign: "right" }}>
-                  <div style={{ fontSize: 13, fontWeight: 800, color: T1 }}>{fmtDate(s.date)}</div>
-                  <div style={{ fontSize: 11, color: T3 }}>{fmtTime(s.date)} · {fmtDur(s.duration)}</div>
+                  <div style={{ fontSize: 18, fontWeight: 800, color: T1 }}>{fmtDate(s.date)}</div>
+                  <div style={{ fontSize: 17, color: T3 }}>{fmtTime(s.date)} · {fmtDur(s.duration)}</div>
                 </div>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
                 {s.exercises.filter(e => e.setsCompleted > 0).map((e, i) => (
-                  <span key={i} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 6, fontSize: 11, color: T2, padding: "3px 8px", fontWeight: 600 }}>
+                  <span key={i} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 6, fontSize: 17, color: T2, padding: "3px 8px", fontWeight: 600 }}>
                     {e.name}{e.weight > 0 ? ` · ${e.weight}kg` : ""}
                   </span>
                 ))}
@@ -1473,20 +1473,20 @@ function HistoryScreen({ appState, onBack }) {
           <div style={{ marginBottom: 14 }}>
             <Lbl>Exercício</Lbl>
             <select value={chartEx||""} onChange={e => setChartEx(e.target.value)}
-              style={{ width:"100%", background:C2, border:`1.5px solid ${B1}`, borderRadius:10, color: chartEx ? T1 : T3, padding:"11px 13px", fontSize:14, outline:"none", fontFamily:"inherit", boxSizing:"border-box" }}>
+              style={{ width:"100%", background:C2, border:`1.5px solid ${B1}`, borderRadius:10, color: chartEx ? T1 : T3, padding:"11px 13px", fontSize: 19, outline:"none", fontFamily:"inherit", boxSizing:"border-box" }}>
               <option value="">Selecionar exercício...</option>
               {allExNames.map(n => <option key={n} value={n}>{n}</option>)}
             </select>
           </div>
           {chartEx && chartData.length > 0 && (
             <div>
-              <div style={{ fontSize:12, color:T3, marginBottom:12 }}>{chartData.length} sessões com <b style={{color:T1}}>{chartEx}</b></div>
+              <div style={{ fontSize: 16, color:T3, marginBottom:12 }}>{chartData.length} sessões com <b style={{color:T1}}>{chartEx}</b></div>
               <ResponsiveContainer width="100%" height={220}>
                 <LineChart data={chartData}>
                   <CartesianGrid stroke={B1} />
-                  <XAxis dataKey="date" tick={{fill:T3,fontSize:10}} />
-                  <YAxis tick={{fill:T3,fontSize:10}} unit="kg" />
-                  <Tooltip contentStyle={{background:C1,border:`1px solid ${B1}`,borderRadius:10,fontSize:12}} itemStyle={{color:T1}} formatter={v=>[`${v} kg`,"Peso"]} />
+                  <XAxis dataKey="date" tick={{fill:T3,fontSize: 15}} />
+                  <YAxis tick={{fill:T3,fontSize: 15}} unit="kg" />
+                  <Tooltip contentStyle={{background:C1,border:`1px solid ${B1}`,borderRadius:10,fontSize: 16}} itemStyle={{color:T1}} formatter={v=>[`${v} kg`,"Peso"]} />
                   <Line type="monotone" dataKey="peso" stroke={BLK} strokeWidth={2.5} dot={{fill:A,r:5,stroke:BLK,strokeWidth:2}} activeDot={{r:7}} />
                 </LineChart>
               </ResponsiveContainer>
@@ -1534,15 +1534,15 @@ export default function App() {
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 6 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <div style={{ width: 48, height: 48, background: A, borderRadius: 14, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Dumbbell size={26} color={BLK} strokeWidth={2.5} />
+            <Dumbbell size={30} color={BLK} strokeWidth={2.5} />
           </div>
-          <span style={{ fontSize: 34, fontWeight: 900, color: T1, letterSpacing: -1 }}>
+          <span style={{ fontSize: 37, fontWeight: 900, color: T1, letterSpacing: -1 }}>
             Stack<span style={{ color: A }}>fit</span>
           </span>
         </div>
-        <span style={{ fontSize: 11, color: T3, letterSpacing: 3, textTransform: "uppercase" }}>by Luiz Pandolfi</span>
+        <span style={{ fontSize: 17, color: T3, letterSpacing: 3, textTransform: "uppercase" }}>by Luiz Pandolfi</span>
       </div>
-      <div style={{ fontSize: 13, color: T3, marginTop: 12 }}>carregando…</div>
+      <div style={{ fontSize: 18, color: T3, marginTop: 12 }}>carregando…</div>
     </div>
   );
 
@@ -1550,17 +1550,17 @@ export default function App() {
     <div style={{ minHeight: "100vh", background: BG, fontFamily: "'DM Sans','Segoe UI',sans-serif", color: T1, maxWidth: 480, margin: "0 auto" }}>
       {/* Top bar */}
       <div style={{ padding: "18px 20px 0", display: "flex", alignItems: "center", gap: 10, marginBottom: 24 }}>
-        <div style={{ width: 32, height: 32, background: A, borderRadius: 9, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-          <Dumbbell size={16} color={BLK} strokeWidth={2.5} />
+        <div style={{ width: 40, height: 40, background: A, borderRadius: 11, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+          <Dumbbell size={21} color={BLK} strokeWidth={2.5} />
         </div>
-        <span style={{ fontSize: 18, fontWeight: 900, color: T1, letterSpacing: -0.5 }}>
+        <span style={{ fontSize: 23, fontWeight: 900, color: T1, letterSpacing: -0.5 }}>
           Stack<span style={{ color: A }}>fit</span>
         </span>
         <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 10 }}>
           {/* Firebase save status */}
           {saveStatus !== "idle" && (
             <span style={{
-              fontSize: 11, fontWeight: 700, letterSpacing: 0.5,
+              fontSize: 17, fontWeight: 700, letterSpacing: 0.5,
               color: saveStatus === "saved" ? "#4caf50" : saveStatus === "error" ? "#e03030" : T3,
               transition: "color 0.3s"
             }}>
@@ -1568,7 +1568,7 @@ export default function App() {
             </span>
           )}
           {screen !== "home" && (
-            <button onClick={() => { setScreen("home"); setEditTarget(null); }} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 8, color: T2, cursor: "pointer", fontSize: 12, fontWeight: 700, padding: "6px 12px", fontFamily: "inherit" }}>
+            <button onClick={() => { setScreen("home"); setEditTarget(null); }} style={{ background: C2, border: `1px solid ${B1}`, borderRadius: 8, color: T2, cursor: "pointer", fontSize: 16, fontWeight: 700, padding: "6px 12px", fontFamily: "inherit" }}>
               ← Início
             </button>
           )}
