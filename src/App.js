@@ -88,7 +88,7 @@ function RestTimer() {
     <div style={{ background: BLK, borderRadius: 12, padding: "10px 14px", marginTop: 8, border: `1px solid ${B1}` }}>
       <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
         <div style={{ display: "flex", gap: 5 }}>
-          {[30, 60, 90, 120].map(s => (
+          {[40, 60, 90].map(s => (
             <button key={s} onClick={() => changeDur(s)} style={{ background: dur === s ? A : C2, border: `1px solid ${dur === s ? A : B1}`, borderRadius: 7, padding: "4px 8px", fontSize: 17, fontWeight: 700, color: dur === s ? BLK : T3, cursor: "pointer", fontFamily: "inherit" }}>
               {s >= 60 ? `${s / 60}min` : `${s}s`}
             </button>
